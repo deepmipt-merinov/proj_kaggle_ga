@@ -21,10 +21,15 @@ The 2nd model operates on probabilities. For each user we determine a transition
 1. Using parameters `[T0,T1,T2,T3]`, where `T0` and `T1` are start time and end time of train window and `T2` and `T3` are start time and end time of test window, we train a transition matrix `P(i,j)` from state `i` to state `j`, where `I = {0,1,2}` and `J = {1,2}`. We take into account transitions as follows:
 
   `(0,1) -> [-] trans before T0, [-] trans in [T0,T1] and [-] trans in [T2,T3]`
+  
   `(0,2) -> [-] trans before T0, [-] trans in [T0,T1] and [+] trans in [T2,T3]`
+  
   `(1,1) -> [+] trans before T0, [-] trans in [T0,T1] and [-] trans in [T2,T3]`
+  
   `(1,2) -> [+] trans before T0, [-] trans in [T0,T1] and [+] trans in [T2,T3]`
+  
   `(2,1) -> [+] trans before T0, [+] trans in [T0,T1] and [-] trans in [T2,T3]`
+  
   `(2,2) -> [+] trans before T0, [+] trans in [T0,T1] and [+] trans in [T2,T3]`
 
 where `[-]` means there was no transaction and `[+]` means there was at least one transaction. 
